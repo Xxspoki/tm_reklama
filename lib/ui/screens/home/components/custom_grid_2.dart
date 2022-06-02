@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tm_reklama/constants.dart';
+import 'package:tm_reklama/ui/screens/coupon_and_action/coupon_and_action_screen.dart';
+
+const List navigationList = [
+  CouponAndActionScreen(),
+  CouponAndActionScreen(),
+  CouponAndActionScreen(),
+  CouponAndActionScreen(),
+];
 
 final List<Map<String, String>> gridTitles = [
   {'name': 'Рестораны\nи кафе'},
@@ -42,37 +50,50 @@ class CustomGridBuilder2 extends StatelessWidget {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, childAspectRatio: 1.4),
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          margin: const EdgeInsets.all(12),
-          padding: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            gradient: kPrimaryGradientColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: GridTile(
-            child: Stack(children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    gridTitles[index]['name'].toString(),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: kWhiteColor,
-                      fontWeight: FontWeight.bold,
+        return GestureDetector(
+          onTap: () => {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (c, a1, a2) => navigationList[index],
+                transitionsBuilder: (c, anim, a2, child) =>
+                    FadeTransition(opacity: anim, child: child),
+                transitionDuration: kAnimationDuration,
+              ),
+            )
+          },
+          child: Container(
+            margin: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              gradient: kPrimaryGradientColor,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: GridTile(
+              child: Stack(children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      gridTitles[index]['name'].toString(),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: kWhiteColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: gridImages[index]['image'],
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: gridImages[index]['image'],
+                  ),
                 ),
-              ),
-            ]),
+              ]),
+            ),
           ),
         );
       },

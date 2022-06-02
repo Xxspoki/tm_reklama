@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tm_reklama/ui/screens/profile/components/balance.dart';
 import 'package:tm_reklama/ui/screens/profile/components/coupon.dart';
 import 'package:tm_reklama/ui/screens/profile/components/custom_grid.dart';
 import 'package:tm_reklama/ui/screens/profile/components/profile_detail.dart';
+import 'package:tm_reklama/ui/widgets/balance.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -16,18 +16,18 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    final mHeight = MediaQuery.of(context).size.height / 6;
+    final mSize = MediaQuery.of(context).size;
     return Scaffold(
       body: ListView(
         physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics()),
         children: [
           const SizedBox(height: 20),
-          ProfileDetail(mHeight: mHeight),
+          ProfileDetail(mSize: mSize),
           const SizedBox(height: 20),
           const Coupon(),
           const SizedBox(height: 20),
-          Balance(mHeight: mHeight),
+          Balance(mSize: mSize),
           const SizedBox(height: 10),
           CustomGridBuilder(controller: _controller),
         ],

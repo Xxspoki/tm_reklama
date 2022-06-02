@@ -6,10 +6,10 @@ import 'package:tm_reklama/core/providers/balance_provider.dart';
 class Balance extends StatelessWidget {
   const Balance({
     Key? key,
-    required this.mHeight,
+    required this.mSize,
   }) : super(key: key);
 
-  final double mHeight;
+  final Size mSize;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class Balance extends StatelessWidget {
 
     return Container(
       color: const Color.fromARGB(255, 253, 245, 211),
-      height: mHeight / 2,
+      height: mSize.height / 12,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -5,7 +5,7 @@ AppBar buildApBar(BuildContext context) {
     // automaticallyImplyLeading: false,
     toolbarHeight: MediaQuery.of(context).size.height / 12,
     title: const Text(
-      'Доска лидеров',
+      'Купоны и акции',
     ),
   );
 }
