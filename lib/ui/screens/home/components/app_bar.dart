@@ -7,7 +7,7 @@ AppBar buildApBar(BuildContext context) {
   BalanceProvider providerInstance = context.watch<BalanceProvider>();
 
   return AppBar(
-    toolbarHeight: MediaQuery.of(context).size.height / 12,
+    toolbarHeight: MediaQuery.of(context).size.height / 16,
     automaticallyImplyLeading: false,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

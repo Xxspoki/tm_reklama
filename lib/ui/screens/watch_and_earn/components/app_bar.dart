@@ -9,7 +9,7 @@ AppBar buildApBar(BuildContext context) {
   BalanceProvider providerInstance = context.watch<BalanceProvider>();
   return AppBar(
     automaticallyImplyLeading: true,
-    toolbarHeight: MediaQuery.of(context).size.height / 12,
+    toolbarHeight: MediaQuery.of(context).size.height / 16,
     title: const Text(
       'Посмотри и заработай',
     ),

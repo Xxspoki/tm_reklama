@@ -5,7 +5,7 @@ AppBar buildApBar(BuildContext context) {
     centerTitle: true,
     automaticallyImplyLeading: true,
     iconTheme: const IconThemeData(color: Colors.black54),
-    toolbarHeight: MediaQuery.of(context).size.height / 12,
+    toolbarHeight: MediaQuery.of(context).size.height / 16,
     elevation: 0.1,
     backgroundColor: Colors.white,
     titleTextStyle: TextStyle(
