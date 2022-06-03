@@ -25,5 +25,9 @@ class LightThemeClass {
         fontSize: 18,
       ),
     ),
+    iconTheme: const IconThemeData(
+      size: 24,
+      color: Colors.amber,
+    ),
   );
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+import 'package:tm_reklama/constants.dart';
 import 'package:tm_reklama/core/providers/index.dart';
 import 'package:tm_reklama/k_light_theme.dart';
 import 'package:tm_reklama/ui/screens/home/home_screen.dart';
@@ -16,12 +18,17 @@ Future main() async {
     DeviceOrientation.portraitDown,
   ]);
 
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(
     MultiProvider(
       providers: providers,
       child: const MyApp(),
     ),
   );
+
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatefulWidget {
@@ -39,7 +46,7 @@ class _MyAppState extends State<MyApp> {
     const ProfileScreen(),
     const SettingScreen(),
   ];
-  final customIconThemeColor = ThemeData().iconTheme.color;
+  final customIconTheme = ThemeData().iconTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -58,41 +65,41 @@ class _MyAppState extends State<MyApp> {
             labelTextStyle: MaterialStateProperty.all(
               const TextStyle(
                 height: 0.8,
-                fontSize: 14,
+                fontSize: 13,
                 fontWeight: FontWeight.w500,
                 color: Colors.black54,
               ),
             ),
+            iconTheme: MaterialStateProperty.all(
+                const IconThemeData(color: Colors.amber, size: 30)),
           ),
           child: NavigationBar(
             labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
             height: 55,
-            backgroundColor: Colors.white,
+            backgroundColor: kWhiteColor,
             selectedIndex: currentIndex,
-            animationDuration: const Duration(milliseconds: 400),
+            animationDuration: kAnimationDuration * 2,
             onDestinationSelected: (index) =>
                 setState(() => currentIndex = index),
             destinations: const [
               NavigationDestination(
-                  icon: Icon(Icons.home_outlined, color: Colors.amber),
-                  selectedIcon: Icon(Icons.home, color: Colors.amber),
+                  icon: Icon(Icons.home_outlined),
+                  selectedIcon: Icon(Icons.home),
                   label: 'Home',
                   tooltip: ''),
               NavigationDestination(
-                  icon: Icon(Icons.credit_card_off, color: Colors.amber),
-                  selectedIcon: Icon(Icons.credit_card, color: Colors.amber),
+                  icon: Icon(Icons.credit_card_off),
+                  selectedIcon: Icon(Icons.credit_card),
                   label: 'Transaction',
                   tooltip: ''),
               NavigationDestination(
-                  icon: Icon(CupertinoIcons.person, color: Colors.amber),
-                  selectedIcon:
-                      Icon(CupertinoIcons.person_fill, color: Colors.amber),
+                  icon: Icon(CupertinoIcons.person),
+                  selectedIcon: Icon(CupertinoIcons.person_fill),
                   label: 'Profile',
                   tooltip: ''),
               NavigationDestination(
-                  icon: Icon(CupertinoIcons.settings, color: Colors.amber),
-                  selectedIcon:
-                      Icon(CupertinoIcons.settings_solid, color: Colors.amber),
+                  icon: Icon(CupertinoIcons.settings),
+                  selectedIcon: Icon(CupertinoIcons.settings_solid),
                   label: 'Settings',
                   tooltip: ''),
             ],
